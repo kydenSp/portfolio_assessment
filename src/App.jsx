@@ -50,7 +50,7 @@ const WINDOWS = {
   contact: {
     title: 'CONTACT.cfg — System Settings',
     icon: '⚙️',
-    statusBar: 'Settings OK | Last modified: 2024 | Apply: F10',
+    statusBar: 'Settings OK | Last modified: 2026 | Apply: F10',
     dark: false,
     wide: false,
     getPos: () => ({ x: Math.max(20, window.innerWidth / 2 - 210), y: Math.max(60, window.innerHeight * 0.14) }),
