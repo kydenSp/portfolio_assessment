@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --terminal-green: #39ff14;
+  --terminal-amber: #FFB000;
+  --window-bg: #F5F5DC;
+  --window-border: #2d5a27;
+  --window-border-dark: #1a3a18;
+  --window-titlebar: #3a7d32;
+  --bios-blue: #0000AA;
+  --shadow-retro: 4px 4px 0px #1a3a18;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  background: #1a5c4a;
+}
+
+/* Fonts */
+.font-vt    { font-family: 'VT323', monospace; }
+.font-mono  { font-family: 'Share Tech Mono', 'Courier New', monospace; }
+.font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+/* CRT filter */
+body.crt-on::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px,
+    transparent 1px, transparent 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  animation: flicker 0.15s infinite;
+}
+body.crt-on::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}
+@keyframes flicker { 0%,100% { opacity:1; } 50% { opacity:0.97; } }
+
+/* BIOS cursor blink */
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+.bios-cursor {
+  display: inline-block;
+  width: 10px; height: 1.1em;
+  background: #ccc;
+  vertical-align: text-bottom;
+  animation: blink 0.7s step-end infinite;
+}
+.term-cursor {
+  display: inline-block;
+  width: 8px; height: 1em;
+  background: var(--terminal-green);
+  vertical-align: text-bottom;
+  animation: blink 0.7s step-end infinite;
+}
+
+/* Desktop dot grid */
+.desktop-dots {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* OS glitch */
+@keyframes glitch {
+  0%,95%,100% { text-shadow: none; transform: none; }
+  96% { text-shadow: 2px 0 #ff0055, -2px 0 #00ffff; transform: translateX(2px); }
+  97% { text-shadow: -2px 0 #ff0055, 2px 0 #00ffff; transform: translateX(-2px); }
+  98% { text-shadow: none; transform: none; }
+}
+.glitch { animation: glitch 8s infinite; }
+
+/* Retro shadow */
+.shadow-retro { box-shadow: var(--shadow-retro), 0 8px 32px rgba(0,0,0,0.5); }
+.shadow-retro-sm { box-shadow: 2px 2px 0 #1a3a18; }
+.shadow-retro-dark { box-shadow: var(--shadow-retro), 0 8px 32px rgba(0,0,0,0.8); }
+
+/* CMOS double border */
+.cmos-outer { border: 3px double #AAAAAA; }
+
+/* Terminal scanline */
+@keyframes scanline { 0% { top: -40px; } 100% { top: 100%; } }
+.scanline-wrap { position: relative; overflow: hidden; }
+.scanline-wrap::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: 0; right: 0; height: 40px;
+  background: rgba(57,255,20,0.03);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* BIOS progress bar */
+.bios-progress-bar {
+  height: 100%;
+  background: #39ff14;
+  transition: width 0.1s linear;
+}
+
+/* Toggle switch */
+.toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 44px; height: 22px;
+}
+.toggle-slider input { opacity: 0; width: 0; height: 0; position: absolute; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: #b0b090;
+  border: 2px solid var(--window-border);
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 2px;
+}
+.toggle-track::before {
+  content: '';
+  position: absolute;
+  left: 2px; top: 2px;
+  width: 14px; height: 14px;
+  background: #F5F5DC;
+  transition: transform 0.2s;
+}
+input:checked + .toggle-track { background: var(--window-titlebar); }
+input:checked + .toggle-track::before { transform: translateX(20px); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: #e8e8d0; }
+::-webkit-scrollbar-thumb { background: var(--window-border); border-radius: 2px; }
+
+/* Folder hover */
+.folder-card {
+  border: 2px solid var(--window-border);
+  background: #ECECD4;
+  box-shadow: 2px 2px 0 #1a3a18;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.folder-card:hover {
+  box-shadow: 4px 4px 0 #1a3a18;
+  transform: translate(-1px, -1px);
+}
+
+/* CMOS skill chip */
+.cmos-skill {
+  background: #000088;
+  border: 1px solid #AAAAAA;
+  color: #FFFFFF;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  padding: 4px 9px;
+  cursor: default;
+  transition: background 0.15s, color 0.15s;
+}
+.cmos-skill::before { content: '▶'; font-size: 7px; margin-right: 5px; color: #AAAA00; }
+.cmos-skill:hover { background: #0000DD; color: #00AAAA; }
+
+/* Contact button */
+.contact-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Share Tech Mono', monospace; font-size: 11px;
+  padding: 6px 13px;
+  background: var(--window-titlebar); color: #F5F5DC;
+  border: 2px solid var(--window-border-dark);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #1a3a18;
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+.contact-btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #1a3a18; color: #fff; }
+.contact-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #1a3a18; }
+
+/* Win button */
+.win-btn {
+  width: 18px; height: 18px;
+  border: 2px solid var(--window-border-dark);
+  background: var(--window-bg);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #222; border-radius: 2px;
+  transition: background 0.1s;
+  line-height: 1;
+}
+.win-btn:hover { background: #e0e0c0; }
+.win-btn.close-btn:hover { background: #cc3333; color: #fff; }
+.win-btn-dark { background: #111; color: #aaa; border-color: #333; }
+.win-btn-dark:hover { background: #333; }
+.win-btn-dark.close-btn:hover { background: #990000; color: #fff; }
+
+@media (max-width: 640px) {
+  #desktop-icons { display: none; }
+}
