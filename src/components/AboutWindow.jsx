@@ -1,3 +1,5 @@
+import myImage from "../assets/Supisa.jpg"
+
 export default function AboutWindow() {
   return (
     <div>
@@ -32,9 +34,8 @@ export default function AboutWindow() {
             position: 'absolute', inset: 0,
             background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 4px)',
           }} />
-          <span style={{ fontSize: 50 }}>🧑‍💻</span>
+          <img src={myImage} alt="Supisara_wongrueang Profile" style={{ width: '200px', borderRadius: '1px' }}/>
           <span className="font-vt" style={{ fontSize: 9, color: '#3a5a32', marginTop: 4, opacity: 0.7, textAlign: 'center' }}>
-            SUPISARA.bmp<br />128×128px
           </span>
         </div>
 

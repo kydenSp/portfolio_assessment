@@ -22,7 +22,7 @@ function Toggle({ id, label, onToggle }) {
           <input type="checkbox" id={id} checked={on} onChange={handle} style={{ display: 'none' }} />
           <div
             className="toggle-track"
-            onClick={() => { const next = !on; setOn(next); onToggle?.(next) }}
+            
             style={{
               position: 'relative',
               display: 'inline-block',
