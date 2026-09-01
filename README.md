@@ -1,16 +1,29 @@
-# React + Vite
+# 🚀 Supisara's Professional Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Welcome to my portfolio repository! This website serves as a digital showcase of my work, skills, and journey as a [e.g., Front-end Developer / UI/UX Designer / Full-Stack Engineer].
 
-Currently, two official plugins are available:
+**🔗 https://portfolioassessment.vercel.app/ **
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 📖 About This Project
+This portfolio was built as part of an **assessment** to demonstrate my ability to design and develop a responsive, modern, and high-performance web application. The goal was to create a clean user experience that highlights my technical proficiency and attention to detail.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Core Features
+- **Responsive Design:** Fully optimized for mobile, tablet, and desktop screens.
+- **Interactive UI:** Smooth transitions and animations for a modern feel.
+- **Project Showcase:** A filtered gallery highlighting my key technical projects.
+- **Contact Integration:** A functional contact form and direct links to professional socials.
+- **SEO Optimized:** Built with semantic HTML for better search engine visibility.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🛠️ Tech Stack
+This project was built using the following technologies:
+
+| Category | Technology |
+| :--- | :--- |
+| **Frontend** | HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+) |
+| **Frameworks/Libraries** | [React.js / Tailwind CSS] |
+| **Deployment** | [ Vercel / GitHub Pages] |
+| **Design Tools** | [ Figma ] |
