@@ -14,7 +14,7 @@ const PROJECTS = [
     <>
       <a href="https://group4-build-day.vercel.app/">Link to Game</a>
     </>
-  ),
+  ), 
   },
    {
     title: '⬛ DOM — Web-Shooter-Tycoon',
