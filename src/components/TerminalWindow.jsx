@@ -16,6 +16,17 @@ const PROJECTS = [
     </>
   ),
   },
+   {
+    title: '⬛ DOM — Web-Shooter-Tycoon',
+    stack: 'Html · CSS · JavaScript',
+    desc: 'Spider LAB: An interactive idle clicker game built with JavaScript to showcase dynamic DOM manipulation, game logic implementation, and real-time UI updates.',
+    tags: ['DOM', 'Click'],
+    Gameplay: (
+    <>
+      <a href="https://web-shooter-tycoon-clicker.vercel.app/">Link to Game</a>
+    </>
+  ),
+  },
   {
     title: '⬛ Portfolio OS — Retro Desktop UI',
     stack: 'Stack: HTML · CSS · JavaScript · React',
