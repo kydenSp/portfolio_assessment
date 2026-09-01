@@ -1,9 +1,20 @@
 const PROJECTS = [
   {
-    title: '⬛ JSD13 Final Project — Full-Stack Web App',
+    title: '⬛ JSD13 Final Project — "That-tae" Full-Stack Web App',
     stack: 'Stack: MongoDB · Express.js · React.js · Node.js',
     desc: 'A full-stack MERN application built during Generation Thailand JSD Bootcamp #13. Features user authentication, RESTful API, and responsive UI.',
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'JWT Auth'],
+  },
+  {
+    title: '⬛ Build day — Flappy boss Game',
+    stack: 'Stack:React.js · Node.js',
+    desc: 'Developed a responsive weapon combat system focusing on accurate damage logic and hit detection.',
+    tags: ['React', 'Tailwind CSS','Prompt Eng'],
+    Gameplay: (
+    <>
+      <a href="https://group4-build-day.vercel.app/">Link to Game</a>
+    </>
+  ),
   },
   {
     title: '⬛ Portfolio OS — Retro Desktop UI',
@@ -55,6 +66,11 @@ export default function TerminalWindow() {
           <div style={{ color: '#39ff14', fontSize: 13, marginBottom: 4 }}>{p.title}</div>
           <div style={{ color: '#FFB000', fontSize: 10, marginBottom: 5 }}>{p.stack}</div>
           <div style={{ color: '#aaa', fontSize: 11, lineHeight: 1.5, marginBottom: 7 }}>{p.desc}</div>
+          {p.Gameplay && (
+            <div style={{ fontSize: 11, marginBottom: 7, color: '#39ff14', textDecoration: 'underline' }}>
+              Gameplay: {p.Gameplay}
+            </div>
+          )}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
             {p.tags.map(tag => (
               <span

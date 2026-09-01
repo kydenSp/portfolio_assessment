@@ -60,10 +60,12 @@ const WINDOWS = {
 export default function App() {
   const [biosOver, setBiosOver] = useState(false)
   const [desktopVisible, setDesktopVisible] = useState(false)
-  const [crtOn, setCrtOn] = useState(false)
+  const [crtOn, setCrtOn] = useState(true)
   const [openWindows, setOpenWindows] = useState(new Set())
   const [zMap, setZMap] = useState({})
   const zCounter = useRef(200)
+
+  const audioCtxRef = useRef(null)
 
   const handleBiosDone = useCallback(() => {
     setBiosOver(true)
@@ -112,6 +114,55 @@ export default function App() {
   useEffect(() => {
     document.body.classList.toggle('crt-on', crtOn)
   }, [crtOn])
+
+useEffect(() => {
+    // ฟังก์ชันเล่นเสียง
+    const playClickSound = () => {
+      try {
+        // สร้าง AudioContext ถ้ายังไม่มี
+        if (!audioCtxRef.current) {
+          audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        const ctx = audioCtxRef.current;
+        
+        // ถ้า AudioContext โดนระงับ (Suspended) ให้สั่งทำงานต่อ (Resume)
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.connect(g);
+        g.connect(ctx.destination);
+        
+        osc.frequency.value = 1200; // เสียงแหลมแบบ 8-bit
+        osc.type = 'square';
+        
+        g.gain.setValueAtTime(0.015, ctx.currentTime); // ปรับระดับความดัง
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05); // สั้นๆ 0.05 วินาที
+        
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch (e) {
+        console.error("Audio error:", e);
+      }
+    };
+
+    const handleGlobalClick = (e) => {
+      // ดักจับการคลิกที่ปุ่ม, ลิ้งก์, หรือจุดอื่นๆ ที่ควรมีเสียง
+      // ลบเงื่อนไข e.target.closest ออกไปเลย เพื่อให้ 'คลิกตรงไหนก็มีเสียง' ตลอดเวลา
+      playClickSound();
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => {
+      document.removeEventListener('click', handleGlobalClick);
+      // ปิด AudioContext เมื่อออกจากระบบ
+      if (audioCtxRef.current) {
+        audioCtxRef.current.close();
+      }
+    };
+  }, []);
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
