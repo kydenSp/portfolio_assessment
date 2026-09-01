@@ -119,7 +119,27 @@ export default function ContactWindow({ onCrtToggle }) {
         }
       }} />
 
-      <InfoRow label="🌐 Language" value="TH / EN (Bilingual)" />
+      <InfoRow label="🐈‍ GitHub" value={
+    <a 
+      href="https://github.com/kydenSp" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      style={{ color: '#1a5c4a' }}
+    >
+      github.com/kydenSp
+    </a>
+  }/>
+  <InfoRow label="🌐 LinkedIn" value={
+    <a 
+      href="https://www.linkedin.com/in/supisara-wong/?skipRedirect=true" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      style={{ color: '#1a5c4a' }}
+    >
+      linkedin.com/supisara-wong
+    </a>
+  }/>
+
       <InfoRow label="💾 OS Version" value="Supisara_OS v1.0.0" last />
     </div>
   )
